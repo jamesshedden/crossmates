@@ -1,0 +1,59 @@
+<head>
+  <title>Crossmates</title>
+</head>
+
+<body>
+  {{> imageView}}
+
+  <div class="container">
+    {{#if isAdmin}}
+      {{#unless imageExists}}
+        <form class="crossword-upload" action="">
+          <input type="file" name="file" class="crossword-upload__input">
+          <button type="submit">Upload</button>
+        </form>
+      {{/unless}}
+    {{/if}}
+
+    <header>
+      {{> loginButtons}}
+
+      {{#if currentUser}}
+        <form class="new-task">
+          <input type="text"
+          class="new-task__input"
+          name="text"
+          placeholder="Clue suggestion e.g. 6A - Parsnips" />
+        </form>
+      {{/if}}
+    </header>
+
+    <ul>
+      {{#each tasks}}
+        {{> task}}
+      {{/each}}
+    </ul>
+  </div>
+</body>
+
+<template name="task">
+  <li class="{{#if checked}}checked{{/if}}">
+    {{#if isAdmin}}
+      <button class="delete">✔</button>
+    {{/if}}
+
+    {{#if isAdmin}}
+      <input type="checkbox"
+      checked="{{checked}}"
+      class="toggle-checked"/>
+    {{/if}}
+
+    <span class="text"><strong>{{username}}</strong> - {{text}}</span>
+  </li>
+</template>
+
+<template name="imageView">
+  {{#each images}}
+    <img src="{{this.url}}" alt="" class="thumbnail {{#if isAdmin}}can-remove{{/if}}">
+  {{/each}}
+</template>
