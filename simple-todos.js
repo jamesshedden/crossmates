@@ -49,10 +49,12 @@ if (Meteor.isClient) {
 
       // Get value from form element
       var text = event.target.text.value;
+      var replies = [];
 
       // Insert a task into the collection
       Tasks.insert({
         text: text,
+        replies: replies,
         createdAt: new Date(),            // current time
         owner: Meteor.userId(),           // _id of logged in user
         username: Meteor.user().username  // username of logged in user
@@ -82,6 +84,16 @@ if (Meteor.isClient) {
     },
     "click .delete": function () {
       Tasks.remove(this._id);
+    },
+    "click .reply": function(event) {
+      $(event.target).next('.replies').removeClass('is-hidden');
+    },
+    "submit .suggestion-reply": function(event) {
+      event.preventDefault();
+      this.replies.push(event.target.reply.value);
+      Tasks.update(this._id, {
+        $set: {replies: this.replies}
+      });
     }
   });
 

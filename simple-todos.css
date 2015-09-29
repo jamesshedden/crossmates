@@ -124,6 +124,10 @@ header .hide-completed {
   display: block;
 }
 
+.is-hidden {
+  display: none;
+}
+
 @media (max-width: 600px) {
   li {
     padding: 12px 15px;

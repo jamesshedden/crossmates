@@ -42,6 +42,18 @@
       <button class="delete">✔</button>
     {{/if}}
 
+    <button class="reply">Reply</button>
+
+    <div class="replies is-hidden">
+      Replies
+
+      <form class="suggestion-reply">
+        <input type="text" name="reply" class="suggestion-reply__input">
+      </form>
+
+      {{ replies }}
+    </div>
+
     {{#if isAdmin}}
       <input type="checkbox"
       checked="{{checked}}"
