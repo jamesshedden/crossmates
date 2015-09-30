@@ -90,7 +90,10 @@ if (Meteor.isClient) {
     },
     "submit .suggestion-reply": function(event) {
       event.preventDefault();
-      this.replies.push(event.target.reply.value);
+      this.replies.push({
+        text: event.target.reply.value,
+        username: Meteor.user().username,
+      });
       Tasks.update(this._id, {
         $set: {replies: this.replies}
       });

@@ -28,40 +28,44 @@
       {{/if}}
     </header>
 
-    <ul>
-      {{#each tasks}}
-        {{> task}}
-      {{/each}}
-    </ul>
+    {{#each tasks}}
+      {{> task}}
+    {{/each}}
   </div>
 </body>
 
 <template name="task">
-  <li class="{{#if checked}}checked{{/if}}">
-    {{#if isAdmin}}
-      <button class="delete">✔</button>
-    {{/if}}
+  <div class="task">
+    <div class="task__suggestion">
+      {{#if isAdmin}}
+        <input type="checkbox"
+        checked="{{checked}}"
+        class="toggle-checked"/>
+      {{/if}}
 
-    <button class="reply">Reply</button>
-
-    <div class="replies is-hidden">
-      Replies
+      <div class="task__suggestion-content">
+        <span class="task__suggestion-text {{#if checked}}task__suggestion-text--checked{{/if}}">
+          <strong>{{username}}</strong> - {{text}}
+        </span>
+      </div>
 
       <form class="suggestion-reply">
         <input type="text" name="reply" class="suggestion-reply__input">
       </form>
 
-      {{ replies }}
+      {{#if isAdmin}}
+        <button class="delete">✔</button>
+      {{/if}}
     </div>
 
-    {{#if isAdmin}}
-      <input type="checkbox"
-      checked="{{checked}}"
-      class="toggle-checked"/>
-    {{/if}}
-
-    <span class="text"><strong>{{username}}</strong> - {{text}}</span>
-  </li>
+    <div class="task__replies is-hidden">
+      {{#each replies}}
+        <div class="task__reply">
+          <strong>{{username}}</strong> - {{text}}
+        </div>
+      {{/each}}
+    </div>
+  </div>
 </template>
 
 <template name="imageView">

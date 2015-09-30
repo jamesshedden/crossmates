@@ -82,30 +82,6 @@ ul {
   position: relative;
 }
 
-li {
-  position: relative;
-  list-style: none;
-  padding: 15px;
-  border-bottom: #eee solid 1px;
-}
-
-li .text {
-  margin-left: 10px;
-}
-
-li.checked .text {
-  position: relative;
-}
-
-li.checked .text:after {
-  display: block;
-  content: '😎';
-  position: absolute;
-  left: 100%;
-  margin-left: 5px;
-  top: -3px;
-}
-
 li.private {
   background: #eee;
   border-color: #ddd;
@@ -141,4 +117,44 @@ header .hide-completed {
   .new-task input {
     padding-bottom: 5px;
   }
+}
+
+.task,
+.task__replies {
+  display: flex;
+  flex-direction: column;
+}
+
+.task__suggestion,
+.task__reply {
+  display: flex;
+  padding: 15px;
+  border-bottom: #eee solid 1px;
+  background: white;
+  flex-direction: row;
+}
+
+.task__reply {
+  margin-left: 40px;
+}
+
+.task__suggestion-content {
+  flex: 1 1 auto;
+}
+
+.task__suggestion-text {
+  margin-left: 10px;
+}
+
+.task__suggestion-text--checked {
+  position: relative;
+}
+
+.task__suggestion-text--checked:after {
+  display: block;
+  content: '😎';
+  position: absolute;
+  left: 100%;
+  margin-left: 5px;
+  top: -3px;
 }
