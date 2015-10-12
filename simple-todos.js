@@ -15,6 +15,22 @@ function isAdmin() {
   }
 }
 
+function clueFormatFilter(input) {
+  var clue = [];
+
+  input.split('').map((character) => {
+    clue.push(`
+      <span class="clue__character">${character}</span>
+    `);
+  });
+
+  var clueChars = $(clue.join(''));
+
+  setTimeout(() => {
+    $(`#${this._id}`).find('.clue').html(clueChars);
+  }, 0);
+}
+
 if (Meteor.isClient) {
   // This code only runs on the client
   Template.body.helpers({
@@ -32,7 +48,8 @@ if (Meteor.isClient) {
   });
 
   Template.task.helpers({
-    isAdmin: isAdmin
+    clueFormatFilter,
+    isAdmin,
   });
 
   Template.imageView.helpers({

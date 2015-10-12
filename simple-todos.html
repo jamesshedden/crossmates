@@ -20,10 +20,24 @@
 
       {{#if currentUser}}
         <form class="new-task">
+
+          <div class="new-task__input">
+            <select name="direction" class="new-task__select">
+              <option selected disabled="disabled">Direction</option>
+              <option value="across">Across</option>
+              <option value="down">Down</option>
+            </select>
+          </div>
+
+          <input type="number"
+          name="number"
+          class="new-task__input"
+          placeholder="No.">
+
           <input type="text"
           class="new-task__input"
           name="text"
-          placeholder="Clue suggestion e.g. 6A - Parsnips" />
+          placeholder="Word or phrase" />
         </form>
       {{/if}}
     </header>
@@ -43,9 +57,12 @@
         class="toggle-checked"/>
       {{/if}}
 
-      <div class="task__suggestion-content">
+      <div class="task__suggestion-content" id="{{_id}}">
         <span class="task__suggestion-text {{#if checked}}task__suggestion-text--checked{{/if}}">
-          <strong>{{username}}</strong> - {{text}}
+          <div class="clue" {{ clueFormatFilter text }}></div>
+
+          &thinsp;&mdash;&thinsp;
+          <strong>{{username}}</strong>
         </span>
       </div>
 
@@ -61,7 +78,9 @@
     <div class="task__replies is-hidden">
       {{#each replies}}
         <div class="task__reply">
-          <strong>{{username}}</strong> - {{text}}
+          <div class="task__reply-text">
+            <strong>{{username}}</strong>&thinsp;&mdash;&thinsp;{{text}}
+          </div>
         </div>
       {{/each}}
     </div>

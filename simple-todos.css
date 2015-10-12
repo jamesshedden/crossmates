@@ -1,4 +1,11 @@
-/* CSS declarations go here */
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
 body {
   font-family: sans-serif;
   background-color: #eee;
@@ -39,13 +46,21 @@ h1 {
 }
 
 .new-task {
-  margin-top: 10px;
-  margin-bottom: -10px;
-  position: relative;
+  font-size: 0;
+  margin-top: 15px;
+  display: flex;
 }
 
-.new-task__input {
+.new-task__input,
+.new-task__number {
   color: white;
+}
+
+.new-task__select {
+  background: none;
+  border: 0;
+  color: white;
+  font-size: 14px;
 }
 
 .crossword-upload {
@@ -54,17 +69,21 @@ h1 {
 }
 
 .new-task input {
-  box-sizing: border-box;
-  padding: 10px 0;
   background: transparent;
-  border: none;
-  width: 100%;
-  padding-right: 80px;
-  font-size: 1em;
+  flex: 1 1 auto;
 }
 
 .new-task input:focus{
   outline: 0;
+}
+
+.new-task__input {
+  border: 1px solid white;
+  display: inline-block;
+  font-size: 14px;
+  height: 35px;
+  line-height: 35px;
+  padding: 0 8px;
 }
 
 ul {
@@ -119,14 +138,35 @@ header .hide-completed {
   }
 }
 
+.task {
+  position: relative;
+  overflow: hidden;
+}
+
+.task:after {
+  display: block;
+  content: "";
+  width: 1px;
+  height: 100%;
+  background-color: red;
+  position: absolute;
+  top: -22px;
+  left: 23px;
+  z-index: 0;
+}
+
 .task,
 .task__replies {
   display: flex;
   flex-direction: column;
 }
 
+.task__suggestion {
+  z-index: 1;
+}
+
 .task__suggestion,
-.task__reply {
+.task__reply-text {
   display: flex;
   padding: 15px;
   border-bottom: #eee solid 1px;
@@ -135,7 +175,24 @@ header .hide-completed {
 }
 
 .task__reply {
-  margin-left: 40px;
+  margin-left: 48px;
+  position: relative;
+}
+
+.task__reply-text {
+  z-index: 0;
+}
+
+.task__reply:after {
+  display: block;
+  content: "";
+  width: 100%;
+  position: absolute;
+  height: 1px;
+  top: 50%;
+  left: -24px;
+  background: red;
+  z-index: -1;
 }
 
 .task__suggestion-content {
@@ -157,4 +214,25 @@ header .hide-completed {
   left: 100%;
   margin-left: 5px;
   top: -3px;
+}
+
+.clue {
+  display: inline-block;
+  text-transform: uppercase;
+  font-size: 0;
+}
+
+.clue__character {
+  font-size: 14px;
+  border: 1px solid black;
+  border-right: 0;
+  display: inline-block;
+  height: 20px;
+  width: 20px;
+  line-height: 20px;
+  text-align: center;
+}
+
+.clue__character:last-child {
+  border-right: 1px solid black;
 }
