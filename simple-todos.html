@@ -22,22 +22,25 @@
         <form class="new-task">
 
           <div class="new-task__input">
-            <select name="direction" class="new-task__select">
+            <select name="direction" class="new-task__select" required>
               <option selected disabled="disabled">Direction</option>
               <option value="across">Across</option>
               <option value="down">Down</option>
             </select>
           </div>
 
-          <input type="number"
+          <input type="number" required
           name="number"
-          class="new-task__input"
-          placeholder="No.">
+          class="new-task__input new-task__input--number"
+          placeholder="Number">
 
-          <input type="text"
+          <input type="text" required
           class="new-task__input"
           name="text"
           placeholder="Word or phrase" />
+
+          <input type="submit"
+          class="new-task__submit">
         </form>
       {{/if}}
     </header>
@@ -67,7 +70,10 @@
       </div>
 
       <form class="suggestion-reply">
-        <input type="text" name="reply" class="suggestion-reply__input">
+        <input type="text"
+        name="reply"
+        class="suggestion-reply__input"
+        placeholder="Branch off this suggestion">
       </form>
 
       {{#if isAdmin}}

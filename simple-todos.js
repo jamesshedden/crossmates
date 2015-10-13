@@ -61,17 +61,23 @@ if (Meteor.isClient) {
 
   Template.body.events({
     "submit .new-task": function (event) {
+
+      console.log(event)
       // Prevent default browser form submit
       event.preventDefault();
 
       // Get value from form element
       var text = event.target.text.value;
+      var direction = event.target.direction.value;
+      var number = event.target.number.value;
       var replies = [];
 
       // Insert a task into the collection
       Tasks.insert({
-        text: text,
-        replies: replies,
+        text,
+        direction,
+        number,
+        replies,
         createdAt: new Date(),            // current time
         owner: Meteor.userId(),           // _id of logged in user
         username: Meteor.user().username  // username of logged in user
@@ -79,6 +85,8 @@ if (Meteor.isClient) {
 
       // Clear form
       event.target.text.value = "";
+      event.target.direction.value = "";
+      event.target.number.value = "";
     },
 
     "submit .crossword-upload": function (event) {

@@ -51,6 +51,15 @@ h1 {
   display: flex;
 }
 
+.new-task__submit {
+  width: 0;
+  height: 0;
+  overflow: hidden;
+  border: 0;
+  flex: none;
+  font-size: 0;
+}
+
 .new-task__input,
 .new-task__number {
   color: white;
@@ -61,6 +70,7 @@ h1 {
   border: 0;
   color: white;
   font-size: 14px;
+  width: 100%;
 }
 
 .crossword-upload {
@@ -68,22 +78,28 @@ h1 {
   background: none;
 }
 
-.new-task input {
-  background: transparent;
-  flex: 1 1 auto;
-}
-
 .new-task input:focus{
   outline: 0;
 }
 
 .new-task__input {
+  flex: 1 1 auto;
   border: 1px solid white;
+  background: transparent;
   display: inline-block;
+  border-right: 0;
   font-size: 14px;
   height: 35px;
   line-height: 35px;
   padding: 0 8px;
+}
+
+.new-task__input .new-task__input--word {
+  border-right: 1px solid white;
+}
+
+.new-task__input--number {
+  max-width: 100px;
 }
 
 ul {
@@ -123,24 +139,10 @@ header .hide-completed {
   display: none;
 }
 
-@media (max-width: 600px) {
-  li {
-    padding: 12px 15px;
-  }
-
-  .search {
-    width: 150px;
-    clear: both;
-  }
-
-  .new-task input {
-    padding-bottom: 5px;
-  }
-}
-
 .task {
   position: relative;
   overflow: hidden;
+  margin-bottom: 5px;
 }
 
 .task:after {
