@@ -1,19 +1,27 @@
 0 info it worked if it ends with ok
-1 verbose cli [ 'node', '/usr/local/bin/npm', 'start' ]
-2 info using npm@2.1.5
-3 info using node@v0.10.33
-4 verbose node symlink /usr/local/bin/node
-5 verbose config Skipping project config: /Users/James/.npmrc. (matches userconfig)
-6 verbose stack Error: ENOENT, open '/Users/James/package.json'
-7 verbose cwd /Users/James/Projects/Personal/Code/simple-todos
-8 error Darwin 14.3.0
-9 error argv "node" "/usr/local/bin/npm" "start"
-10 error node v0.10.33
-11 error npm  v2.1.5
-12 error path /Users/James/package.json
-13 error code ENOENT
+1 verbose cli [ '/Applications/Atom.app/Contents/Resources/app/apm/bin/node',
+1 verbose cli   '/Applications/Atom.app/Contents/Resources/app/apm/node_modules/npm/bin/npm-cli.js',
+1 verbose cli   '--globalconfig',
+1 verbose cli   '/Users/James/.atom/.apm/.apmrc',
+1 verbose cli   '--userconfig',
+1 verbose cli   '/Users/James/.atom/.apmrc',
+1 verbose cli   'install',
+1 verbose cli   '--target=0.30.7',
+1 verbose cli   '--arch=x64' ]
+2 info using npm@2.13.3
+3 info using node@v0.10.40
+4 verbose readDependencies loading dependencies from /Users/James/Projects/Personal/Code/crossmates/package.json
+5 error install Couldn't read dependencies
+6 verbose stack Error: ENOENT, open '/Users/James/Projects/Personal/Code/crossmates/package.json'
+7 verbose cwd /Users/James/Projects/Personal/Code/crossmates
+8 error Darwin 14.0.0
+9 error argv "/Applications/Atom.app/Contents/Resources/app/apm/bin/node" "/Applications/Atom.app/Contents/Resources/app/apm/node_modules/npm/bin/npm-cli.js" "--globalconfig" "/Users/James/.atom/.apm/.apmrc" "--userconfig" "/Users/James/.atom/.apmrc" "install" "--target=0.30.7" "--arch=x64"
+10 error node v0.10.40
+11 error npm  v2.13.3
+12 error path /Users/James/Projects/Personal/Code/crossmates/package.json
+13 error code ENOPACKAGEJSON
 14 error errno 34
-15 error ENOENT, open '/Users/James/package.json'
-16 error If you need help, you may report this error at:
-16 error     <http://github.com/npm/npm/issues>
-17 verbose exit [ 34, true ]
+15 error package.json ENOENT, open '/Users/James/Projects/Personal/Code/crossmates/package.json'
+15 error package.json This is most likely not a problem with npm itself.
+15 error package.json npm can't find a package.json file in your current directory.
+16 verbose exit [ 34, true ]

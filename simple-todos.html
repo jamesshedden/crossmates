@@ -21,9 +21,9 @@
       {{#if currentUser}}
         <form class="new-task">
 
-          <div class="new-task__input">
+          <div class="new-task__input new-task__input--select">
             <select name="direction" class="new-task__select" required>
-              <option selected disabled="disabled">Direction</option>
+              <option value="default" selected disabled="disabled">Direction</option>
               <option value="across">Across</option>
               <option value="down">Down</option>
             </select>
@@ -34,13 +34,15 @@
           class="new-task__input new-task__input--number"
           placeholder="Number">
 
+          <div class="new-task__input new-task__input--could-be">could be</div>
+
           <input type="text" required
           class="new-task__input"
           name="text"
           placeholder="Word or phrase" />
 
           <input type="submit"
-          class="new-task__submit">
+          class="new-task__input new-task__input--submit">
         </form>
       {{/if}}
     </header>
@@ -55,37 +57,55 @@
   <div class="task">
     <div class="task__suggestion">
       {{#if isAdmin}}
-        <input type="checkbox"
+        <!-- <input type="checkbox"
         checked="{{checked}}"
-        class="toggle-checked"/>
+        class="toggle-checked"/> -->
+
+        <button class="delete">✔</button>
       {{/if}}
 
       <div class="task__suggestion-content" id="{{_id}}">
         <span class="task__suggestion-text {{#if checked}}task__suggestion-text--checked{{/if}}">
+          <span class="username">{{username}}:</span> <strong>{{ number }} {{ direction }}</strong> could be&nbsp;
           <div class="clue" {{ clueFormatFilter text }}></div>
-
-          &thinsp;&mdash;&thinsp;
-          <strong>{{username}}</strong>
         </span>
       </div>
 
       <form class="suggestion-reply">
-        <input type="text"
-        name="reply"
-        class="suggestion-reply__input"
-        placeholder="Branch off this suggestion">
-      </form>
 
-      {{#if isAdmin}}
-        <button class="delete">✔</button>
-      {{/if}}
+        <div class="new-task__input new-task__input--then">Then</div>
+
+        <div class="new-task__input new-task__input--select">
+          <select name="direction" class="new-task__select" required>
+            <option value="default" selected disabled="disabled">Direction</option>
+            <option value="across">Across</option>
+            <option value="down">Down</option>
+          </select>
+        </div>
+
+        <input type="number" required
+        name="number"
+        class="new-task__input new-task__input--number"
+        placeholder="Number">
+
+        <div class="new-task__input new-task__input--could-be">could be</div>
+
+        <input type="text" required
+        class="new-task__input"
+        name="text"
+        placeholder="Word or phrase" />
+
+        <input type="submit"
+        class="new-task__input new-task__input--submit">
+      </form>
     </div>
 
     <div class="task__replies is-hidden">
-      {{#each replies}}
-        <div class="task__reply">
+      {{#each replies _id}}
+        <div class="task__reply" id="{{_id}}">
           <div class="task__reply-text">
-            <strong>{{username}}</strong>&thinsp;&mdash;&thinsp;{{text}}
+            <span class="username">{{username}}:</span> Then <strong>{{ number }} {{ direction }}</strong> could be&nbsp;
+            <div class="clue" {{ clueFormatFilter text }}></div>
           </div>
         </div>
       {{/each}}

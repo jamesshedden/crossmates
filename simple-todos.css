@@ -51,13 +51,8 @@ h1 {
   display: flex;
 }
 
-.new-task__submit {
-  width: 0;
-  height: 0;
-  overflow: hidden;
-  border: 0;
-  flex: none;
-  font-size: 0;
+.new-task__input--submit {
+  display: none !important;
 }
 
 .new-task__input,
@@ -94,12 +89,48 @@ h1 {
   padding: 0 8px;
 }
 
-.new-task__input .new-task__input--word {
+.new-task__input--select {
+  /*max-width: 120px;*/
+  padding: 0;
+  flex: none;
+}
+
+.new-task__input--then {
+  border: 0;
+}
+
+.new-task__input--could-be {
+  border-width: 0 0 0 1px;
+  /*max-width: 70px;*/
+  flex: none;
+}
+
+.new-task__input:nth-last-child(2) {
   border-right: 1px solid white;
+}
+
+.suggestion-reply {
+  font-size: 0;
+  display: flex;
+  text-align: right;
+}
+
+.suggestion-reply .new-task__select {
+  color: black;
+  font-size: 13px;
+}
+
+.suggestion-reply .new-task__input {
+  font-size: 13px;
+  height: 25px;
+  line-height: 25px;
+  border-color: black;
+  color: black;
 }
 
 .new-task__input--number {
   max-width: 100px;
+  flex: none;
 }
 
 ul {
@@ -150,9 +181,9 @@ header .hide-completed {
   content: "";
   width: 1px;
   height: 100%;
-  background-color: red;
+  background-color: #ccc;
   position: absolute;
-  top: -22px;
+  top: -27px;
   left: 23px;
   z-index: 0;
 }
@@ -168,7 +199,7 @@ header .hide-completed {
 }
 
 .task__suggestion,
-.task__reply-text {
+.task__reply {
   display: flex;
   padding: 15px;
   border-bottom: #eee solid 1px;
@@ -193,7 +224,7 @@ header .hide-completed {
   height: 1px;
   top: 50%;
   left: -24px;
-  background: red;
+  background: #ccc;
   z-index: -1;
 }
 
@@ -229,12 +260,16 @@ header .hide-completed {
   border: 1px solid black;
   border-right: 0;
   display: inline-block;
-  height: 20px;
-  width: 20px;
-  line-height: 20px;
+  height: 25px;
+  width: 25px;
+  line-height: 25px;
   text-align: center;
 }
 
 .clue__character:last-child {
   border-right: 1px solid black;
+}
+
+.username {
+  color: #777;
 }

@@ -1,4 +1,5 @@
 Tasks = new Mongo.Collection("tasks");
+Replies = new Mongo.Collection("replies");
 
 var imageStore = new FS.Store.GridFS("images");
 
@@ -50,6 +51,9 @@ if (Meteor.isClient) {
   Template.task.helpers({
     clueFormatFilter,
     isAdmin,
+    replies: function (id) {
+      return Replies.find({task: id});
+    },
   });
 
   Template.imageView.helpers({
@@ -85,7 +89,7 @@ if (Meteor.isClient) {
 
       // Clear form
       event.target.text.value = "";
-      event.target.direction.value = "";
+      event.target.direction.value = "default";
       event.target.number.value = "";
     },
 
@@ -115,13 +119,22 @@ if (Meteor.isClient) {
     },
     "submit .suggestion-reply": function(event) {
       event.preventDefault();
-      this.replies.push({
-        text: event.target.reply.value,
+
+      var text = event.target.text.value;
+      var direction = event.target.direction.value;
+      var number = event.target.number.value;
+
+      Replies.insert({
+        text,
+        task: this._id,
+        direction,
+        number,
         username: Meteor.user().username,
       });
-      Tasks.update(this._id, {
-        $set: {replies: this.replies}
-      });
+
+      event.target.text.value = "";
+      event.target.direction.value = "default";
+      event.target.number.value = "";
     }
   });
 
